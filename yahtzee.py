@@ -12,6 +12,7 @@ print(yahtzee([2, 3, 5, 5, 6]))
 
 // Space O(1)  and time O(n)
 def yahtzee2(dice_roll):
+    // current max, previos max
     cm, pm = 0, 0
     index = 0
     for num in dice_roll:
@@ -25,5 +26,6 @@ def yahtzee2(dice_roll):
         elif num != dice_roll[index-1] and cm < pm:
             cm = num
         index += 1
+     // return max
     return max(pm, cm)
 print(yahtzee2([2, 3, 5, 5, 6]))
