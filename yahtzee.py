@@ -47,3 +47,16 @@ def yahtzee_bonus(file_name):
         dmap[line.strip()] = line.strip()
     return max(dmap.items(), key=operator.itemgetter(1))[1]
 print(yahtzee_bonus("yahtzee-upper-1.txt"))
+
+
+# def yahtzee_bonus2(nums):
+#     dmap = defaultdict()
+#     for num in nums:
+#       if num in dmap.keys(): 
+#         dmap[num] += num
+#       else:
+#         dmap[num] = num
+#     return max(dmap.items(), key=operator.itemgetter(1))[1]
+# print(yahtzee_bonus2([1654, 1654, 50995, 30864, 1654, 50995, 22747,
+#     1654, 1654, 1654, 1654, 1654, 30864, 4868, 1654, 4868, 1654,
+#     30864, 4868, 30864]))
