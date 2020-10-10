@@ -31,32 +31,49 @@ def yahtzee2(dice_roll):
 print(yahtzee2([2, 3, 5, 5, 6]))
 
 
-from collections import defaultdict
 import operator, time
 
 # Space: O(n) & time O(n)
 def yahtzee_bonus(file_name):
+    start = time.time()
     f = open(file_name, 'r') 
     lines = f.readlines() 
-    dmap = defaultdict()
+    dmap = dict()
     for line in lines:
-      line = line.strip()
+      line = int(line.strip())
       if line in dmap.keys(): 
-        dmap[line.strip()] += line.strip()
+        dmap[line] += line
       else:
-        dmap[line.strip()] = line.strip()
+        dmap[line] = line
+    print("time is", time.time()-start )
     return max(dmap.items(), key=operator.itemgetter(1))[1]
 print(yahtzee_bonus("yahtzee-upper-1.txt"))
+# print(yahtzee_bonus("input.txt"))
 
+def yahtzee_bonus2(nums):
+    dmap = dict()
+    for num in nums:
+      if num in dmap.keys(): 
+        dmap[num] += num
+      else:
+        dmap[num] = num
+    return max(dmap.items(), key=operator.itemgetter(1))[1]
+print(yahtzee_bonus2([1654, 1654, 50995, 30864, 1654, 50995, 22747,
+    1654, 1654, 1654, 1654, 1654, 30864, 4868, 1654, 4868, 1654,
+    30864, 4868, 30864]))
 
-# def yahtzee_bonus2(nums):
-#     dmap = defaultdict()
-#     for num in nums:
-#       if num in dmap.keys(): 
-#         dmap[num] += num
-#       else:
-#         dmap[num] = num
-#     return max(dmap.items(), key=operator.itemgetter(1))[1]
-# print(yahtzee_bonus2([1654, 1654, 50995, 30864, 1654, 50995, 22747,
-#     1654, 1654, 1654, 1654, 1654, 30864, 4868, 1654, 4868, 1654,
-#     30864, 4868, 30864]))
+def yahtzee_bonus3(file_name):
+    start = time.time()
+    f = open(file_name, 'r') 
+    lines = f.readlines() 
+    dmap = dict()
+    for line in lines:
+      bit_num = '{0:08b}'.format(int(line.strip()))
+      if bit_num in dmap:
+        dmap[bit_num] = '{0:08b}'.format(int(bit_num, 2) + int(dmap[bit_num], 2))
+      else:
+        dmap[bit_num] = bit_num
+    print("time is", time.time()-start )
+    return int(max(dmap.items(), key=operator.itemgetter(1))[1], 2)
+print(yahtzee_bonus3("yahtzee-upper-1.txt"))
+# print(yahtzee_bonus3("input.txt"))
