@@ -62,18 +62,22 @@ print(yahtzee_bonus2([1654, 1654, 50995, 30864, 1654, 50995, 22747,
     1654, 1654, 1654, 1654, 1654, 30864, 4868, 1654, 4868, 1654,
     30864, 4868, 30864]))
 
+# Space: O(n) & time O(n)
+# faster than yahtzee_bonus
 def yahtzee_bonus3(file_name):
     start = time.time()
     f = open(file_name, 'r') 
     lines = f.readlines() 
     dmap = dict()
     for line in lines:
-      bit_num = '{0:08b}'.format(int(line.strip()))
-      if bit_num in dmap:
-        dmap[bit_num] = '{0:08b}'.format(int(bit_num, 2) + int(dmap[bit_num], 2))
+      line = int(line.strip())
+      if line in dmap.keys(): 
+        dmap[line] += 1
       else:
-        dmap[bit_num] = bit_num
+        dmap[line] = 1
+    maxi = 0
+    for k in dmap:
+        maxi = max(maxi, int(k)*dmap[k])
     print("time is", time.time()-start )
-    return int(max(dmap.items(), key=operator.itemgetter(1))[1], 2)
+    return maxi
 print(yahtzee_bonus3("yahtzee-upper-1.txt"))
-# print(yahtzee_bonus3("input.txt"))
