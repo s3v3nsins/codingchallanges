@@ -2,7 +2,7 @@
 # Write Python 3 code in this online editor and run it.
 import operator
 
-# Space O(n)  and time O(n)
+# Space O(n) or almost O(1)  and time O(n)
 def yahtzee(dice_roll):
     dmap = {key:0 for key in range(1,7)}
     for num in dice_roll:
