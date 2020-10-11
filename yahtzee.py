@@ -17,7 +17,7 @@ def yahtzee2(dice_roll):
     index = 0
     for num in dice_roll:
         if index == 0:
-            cm += num
+            cm = num
         elif num == dice_roll[index-1]:
             cm += num
         elif num != dice_roll[index-1] and cm > pm:
