@@ -55,20 +55,22 @@ def decrypt_message(key, message, matrix, marker):
 		decrypted_message += decrypted_character
 	return decrypted_message
 
-def encrypt_message(key, message, matrix, marker):
-	encrypted_message = ''
-	for x in message:
-		c = encrypt_character(x, matrix, find_indexes(marker))
-		matrix = right_rotate_row(matrix, c)
-		matrix = down_rotate_row(matrix, x)
-		marker = update_marker(matrix, marker, find_indexes(x))
-		encrypted_message += c
-	return encrypted_message
+def encrypt_message(key, plain_text, matrix, marker):
+	cipher_text = ''
+	for x in cipher_text:
+		cipher_char = encrypt_character(x, matrix, find_indexes(marker))
+		matrix = right_rotate_row(matrix, x)
+		matrix = down_rotate_row(matrix, cipher_char)
+		marker = update_marker(matrix, marker, find_indexes(cipher_char))
+		cipher_text += cipher_char
+	return cipher_text
 
 if __name__ == '__main__':
 	key = "s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b"
 	matrix = state_initialization(key)
 	marker = matrix[0][0]
 	print(decrypt_message(key, "tk5j23tq94_gw9c#lhzs", matrix, marker))
+	matrix = state_initialization(key)
+	marker = matrix[0][0]
 	print(encrypt_message(key, "aaaaaaaaaaaaaaaaaaaa", matrix, marker))
-	print(encrypt_message(key, "k8b64caycepxam6zel5d", matrix, marker))
+	# print(encrypt_message(key, "k8b64caycepxam6zel5d", matrix, marker))
